@@ -13,8 +13,8 @@ library(faraway)
 g <- leaps(X,Y)
 Cpplot(g)
 
-# (1,3,7,13,14) seems to be a good choice.
-cp.choice <- c(1,3,7,13,14)+1 # column 1 responds to bodyfat.
+# (1,2,7,9,14) seems to be a good choice.
+cp.choice <- c(1,2,7,9,14)+1 # column 1 responds to bodyfat.
 bodyfat_cp <- bodyfat_2[,c(1,cp.choice)]
 head(bodyfat_cp)
 
