@@ -2,11 +2,17 @@
 # Summary of Project
 Our project focuses on the measure of percentage of body fat. In this module, we will come up with a simple, robust, accurate and precise “rule-of-thumb” method to estimate percentage of body fat.
 Our project can be divided into 6 steps:
+
 1.Data Pre-processing
+
 2.Feature Selection
+
 3.Model Construction & Evaluation
+
 4.Model Diagnosis
+
 5.Conclusions
+
 6.Application on Shiny
 
 Firstly, we get a general idea of the dataset and start to clean up the data by using scatterplot, leverage, cooks distance, outliertest and diffits. Finally, we recovery one mismeasure point, and delete 6 points as well.
