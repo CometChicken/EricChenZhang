@@ -15,7 +15,7 @@ Our project can be divided into 6 steps:
 
 6.Application on Shiny
 
-Firstly, we get a general idea of the dataset and start to clean up the data by using scatterplot, leverage, cooks distance, outliertest and diffits. Finally, we recovery one mismeasure point, and delete 6 points as well.
+Firstly, we get a general idea of the dataset and start to clean up the data by using scatterplot, leverage, cooks distance, outliertest and dffits. Finally, we recovery one mismeasure point, and delete 6 points as well.
 
 Secondly, we need to select variables for our model. We also use various methods, such as mallow's cp, adjusted R^2, AIC, BIC and VIF. Then, we get different subsets of variables under different methods.
 
