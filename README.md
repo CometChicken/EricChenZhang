@@ -27,4 +27,5 @@ BODYFAT = 0.717*ABDOMEN - 2.06008*WRIST-9.7813
 
 Next, we need model diagnosis. We need to check whether our model satisfies the assumptions of normality, equal variance, independence. And the result shows that our model satisfies these assumptions.
 
-Finally, we can put our model into application and we achieve this on shinyapps(https://ericchenzhang.shinyapps.io/body_fat_calculator/).
+Finally, we can put our model into application and we achieve this on shinyapps.
+(https://ericchenzhang.shinyapps.io/body_fat_calculator/)
