@@ -30,7 +30,7 @@ It includes all the images and tables generated when we are running our code.
 ## Summary Folder
 In this folder, we put our jupyter notebook of report in it.
 
-## Shiny Link:
+## Shiny Link
 https://ericchenzhang.shinyapps.io/body_fat_calculator/
 
 
