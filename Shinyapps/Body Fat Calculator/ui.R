@@ -1,6 +1,6 @@
 library(shiny)
 shinyUI(fluidPage(
-  titlePanel("Body Fat Calculator"),
+  titlePanel("Body Fat Calculator (Male)"),
   sidebarLayout(
     sidebarPanel(
       radioButtons("meas", "Choose Your Measurement:",
@@ -25,7 +25,9 @@ shinyUI(fluidPage(
                       fileInput('file1', 'Choose CSV File',
                                 accept=c('text/csv', 'text/comma-separated-values,text/plain'))),
       conditionalPanel(condition="input.mdat==true",tags$hr()),
-      conditionalPanel(condition="input.mdat==true",downloadButton('downloadData', 'Download'))
+      conditionalPanel(condition="input.mdat==true",downloadButton('downloadData', 'Download')),
+      tags$hr(),
+      helpText("If there are any problems, feel free to contact us. Our email: xchen792@wisc.edu")
       ),
   mainPanel(
     h2(textOutput("text1")),

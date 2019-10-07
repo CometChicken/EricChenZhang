@@ -7,7 +7,12 @@ shinyServer(function(input,output){
   meas <- reactive({
     switch(input$meas,met=c(1,1),eng=c(2.54,2.54))
     })
-  bodyfat<-eventReactive(input$submit,{lm1$coefficients[1]+as.numeric(input$abdomen)*lm1$coefficients[2]*meas()[1]+as.numeric(input$wrist)*lm1$coefficients[3]*meas()[2]})
+  bodyfat<-eventReactive(input$submit,{
+    if(as.numeric(input$abdomen)<=0 | as.numeric(input$wrist)<=0)
+      return(0)
+    else
+      return(lm1$coefficients[1]+as.numeric(input$abdomen)*lm1$coefficients[2]*meas()[1]+as.numeric(input$wrist)*lm1$coefficients[3]*meas()[2])
+    })
   result<-eventReactive(input$submit,{"Result"})
   img<-reactive({
     if(bodyfat()<=0)
@@ -35,7 +40,7 @@ shinyServer(function(input,output){
     output$contents<-renderTable({NULL})
     output$table1<-renderTable({
       if(bodyfat()<=0)
-        cat<-"OOF! Something Goes Wrong!"
+        cat<-"Something Goes Wrong! Please Check Your Data Again!"
       else if(bodyfat()<=6)
         cat<-"Essential"
       else if(bodyfat()<=14)
@@ -46,7 +51,10 @@ shinyServer(function(input,output){
         cat<-"Average"
       else
         cat<-"Obese"
-      bodyfat_table<-data.frame(c(round(bodyfat(),3),cat))
+      if(bodyfat()<=0)
+        bodyfat_table<-data.frame(c("Error",cat))
+      else
+        bodyfat_table<-data.frame(c(round(bodyfat(),3),cat))
       rownames(bodyfat_table)<-c("Body Fat %","Category")
       return(bodyfat_table)
     },rownames=T,colnames=F)
@@ -60,7 +68,7 @@ shinyServer(function(input,output){
                                 col =letters[1:5]),
                 inherit.aes=F,aes(xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax, fill= col), show.legend = FALSE)+
       scale_fill_manual('Region',values = adjustcolor(c("red","springgreen","green4","gold","red3"),alpha.f = 0.3), 
-                        labels=c("Essential", "Athletes", "Fitness", "Average","Obese"))+
+                        labels=c("Essential 2%~5%", "Athletes 6%~13%", "Fitness 14%~17%", "Average 18%~25%","Obese 25+%"))+
       guides(fill = guide_legend(override.aes = list(alpha = 0.3)))+
       coord_fixed(ratio=200)+theme(plot.margin=grid::unit(c(0,0,0,0), "mm"))
       })
@@ -81,7 +89,7 @@ shinyServer(function(input,output){
     if (is.null(inFile))
       return(NULL)
     table2<-read.csv(inFile$datapath, header=T)
-    BODY_FAT<-lm1$coefficients[1]+as.numeric(input$abdomen)*lm1$coefficients[2]*meas()[1]+as.numeric(input$wrist)*lm1$coefficients[3]**meas()[2]
+    BODY_FAT<-lm1$coefficients[1]+as.numeric(table2$ABDOMEN)*lm1$coefficients[2]*meas()[1]+as.numeric(table2$WRIST)*lm1$coefficients[3]*meas()[2]
     table2<-cbind(BODY_FAT,table2)
     return(table2)})
   output$downloadData <- downloadHandler(
