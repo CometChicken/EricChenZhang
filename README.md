@@ -28,7 +28,7 @@ In the code folder, we put all of our code in it. It includes data cleaning, var
 It includes all the images and tables generated when we are running our code.
 
 ## Summary Folder
-In this folder, we put our jupyter notebook of report in it.
+In this folder, we put 2 files. One is our jupyter notebook of report in it. The other is the complete jupyter notebook with all the code and output in it.
 
 ## Shiny Link
 https://ericchenzhang.shinyapps.io/body_fat_calculator/
